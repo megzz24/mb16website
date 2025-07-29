@@ -1,72 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<link>
   <meta charset="UTF-8">
   <title>MBTI Quiz - Welcome</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <link rel="stylesheet" href="style.css">
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #e0f7fa, #d0f4de, #ffffff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 30px 25px;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0, 100, 100, 0.1);
-      text-align: center;
-      width: 90%;
-      max-width: 420px;
-    }
-
-    h1 {
-      color: #00796b;
-      margin-bottom: 8px;
-    }
-
-    p {
-      font-size: 1rem;
-      color: #4e6e5d;
-      margin-bottom: 20px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border: 1px solid #b2dfdb;
-      border-radius: 8px;
-      background-color: #ffffff;
-      font-size: 1rem;
-    }
-
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background-color: #4db6ac;
-      color: white;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #00897b;
-    }
-  </style>
 </head>
 <body>
 
@@ -96,13 +34,17 @@
     const name = document.getElementById('username').value.trim();
     const gender = document.getElementById('gender').value;
 
-    if (name === "") {
+    if (!name) {
       alert("Please enter your name to begin.");
       return;
     }
+    
+    const queryParams = new URLSearchParams({
+      username: name,
+      gender: gender || "unspecified"
+    });
 
-    alert(`Welcome, ${name}!\nGender: ${gender || "Not specified"}\nLet's start your MBTI quiz!`);
-
+    window.location.href = "quiz.html?" + queryParams.toString();
     // You can redirect to quiz.html like this later:
     // window.location.href = "quiz.html?username=" + encodeURIComponent(name) + "&gender=" + encodeURIComponent(gender);
   });
