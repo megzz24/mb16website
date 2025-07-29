@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+  <meta charset="UTF-8">
+  <title>MBTI Quiz - Welcome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Welcome to the MBTI Quiz</h1>
+  <p>Discover your unique personality type.</p>
+
+  <form id="introForm">
+    <input type="text" id="username" name="username" placeholder="Enter your name" required>
+
+    <select id="gender" name="gender">
+      <option value="">Select gender (optional)</option>
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+      <option value="nonbinary">Non-binary</option>
+      <option value="prefer_not_say">Prefer not to say</option>
+    </select>
+
+    <button type="submit">Start Quiz</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('introForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('username').value.trim();
+    const gender = document.getElementById('gender').value;
+
+    if (!name) {
+      alert("Please enter your name to begin.");
+      return;
+    }
+    
+    const queryParams = new URLSearchParams({
+      username: name,
+      gender: gender || "unspecified"
+    });
+
+    window.location.href = "quiz.html?" + queryParams.toString();
+    // You can redirect to quiz.html like this later:
+    // window.location.href = "quiz.html?username=" + encodeURIComponent(name) + "&gender=" + encodeURIComponent(gender);
+  });
+</script>
+
+</body>
+</html>
